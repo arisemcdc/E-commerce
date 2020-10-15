@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_store_front">
+
+    <fragment
+        android:id="@+id/navigation_store_front"
+        android:name="com.example.e_commerce.ui.home.StoreFrontFragment"
+        android:label="@string/title_store_front"
+        tools:layout="@layout/fragment_store_front" />
+
+    <fragment
+        android:id="@+id/navigation_back_end"
+        android:name="com.example.e_commerce.ui.dashboard.BackEndFragment"
+        android:label="@string/title_back_end"
+        tools:layout="@layout/fragment_back_end" >
+        <action
+            android:id="@+id/action_navigation_back_end_to_productFragment"
+            app:destination="@id/productFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.e_commerce.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="com.example.e_commerce.ui.ProductFragment"
+        android:label="product_fragment"
+        tools:layout="@layout/product_fragment" >
+        <argument
+            android:name="productId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+    </fragment>
+</navigation>

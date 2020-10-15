@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">E-commerce</string>
+    <string name="title_store_front">Store-Front</string>
+    <string name="title_back_end">Back-End</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="add_product_title">Добавить товар</string>
+</resources>
