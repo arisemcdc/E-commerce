@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.e_commerce.Data.Product
@@ -20,25 +21,38 @@ class ProductFragment : Fragment() {
         fun newInstance() = ProductFragment()
     }
 
-    private lateinit var viewModel: ProductViewModel
+    val viewModel: ProductViewModel by viewModels()
     lateinit var root: View
+    lateinit var product: Product
     val args: ProductFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val args: ProductFragmentArgs by navArgs()
-        if (args.productId == null)
-            setHasOptionsMenu(true)
+        root=inflater.inflate(R.layout.product_fragment, container, false )
+        setHasOptionsMenu(true)
         activity?.nav_view?.visibility = View.GONE
-        root=inflater.inflate(R.layout.product_fragment, container, false)
+        if (args.productId == null) {
+
+        } else {
+            val temp = viewModel.products.value?.find {args.productId == it.id}
+             if (temp!=null)
+                product = temp
+                root.editProductName.setText(product.name)
+                root.editPrice.setText(product.price.toString())
+                root.editAmount.setText(product.amount.toString())
+            }
+
         return root}
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+
+
+
+   /* override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ProductViewModel::class.java)
         // TODO: Use the ViewModel
-    }
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -62,7 +76,7 @@ class ProductFragment : Fragment() {
             val name = root.editProductName.text.toString()
             val price = root.editPrice.text.toString().toDouble()
             val amount = root.editAmount.text.toString().toInt()
-            val product = Product("123", name, price, amount)
+            val product = Product(args.productId!!, name, price, amount)
             // products.add(product)
             /*fun insertProduct(product: Product) {
         GlobalScope.launch {
@@ -73,15 +87,15 @@ class ProductFragment : Fragment() {
                 viewModel.insertProduct(product)
             }
             findNavController().popBackStack()
-        } /*else {
+        } else {
             val name = root.editProductName.text.toString()
             val price = root.editPrice.text.toString().toDouble()
             val amount = root.editAmount.text.toString().toInt()
-            val product = Product(args.productId, name, price, amount)
+            val product = Product(args.productId!!, name, price, amount)
             GlobalScope.launch {
                 viewModel.updateProduct(product)
             }
             findNavController().popBackStack()
-        }*/
+        }
     }
 }
