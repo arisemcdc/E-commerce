@@ -7,7 +7,7 @@ import java.util.*
 data class Product (
     @PrimaryKey
     val id:String = UUID.randomUUID().toString(),
-   // var id: String = "",
+    //var id: String = "",
     val name:String = "",
     val price: Double? = null,
     val amount: Int? = null

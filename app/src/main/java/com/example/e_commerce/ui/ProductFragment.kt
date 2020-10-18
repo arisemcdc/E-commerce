@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.product_fragment.view.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 class ProductFragment : Fragment() {
 
@@ -76,7 +77,9 @@ class ProductFragment : Fragment() {
             val name = root.editProductName.text.toString()
             val price = root.editPrice.text.toString().toDouble()
             val amount = root.editAmount.text.toString().toInt()
-            val product = Product(args.productId!!, name, price, amount)
+            val id:String = UUID.randomUUID().toString()
+            val product = Product(id, name, price, amount)
+            //val product = Product("", name, price, amount)
             // products.add(product)
             /*fun insertProduct(product: Product) {
         GlobalScope.launch {

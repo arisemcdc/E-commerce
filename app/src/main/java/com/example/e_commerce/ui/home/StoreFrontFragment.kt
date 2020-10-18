@@ -23,9 +23,9 @@ class StoreFrontFragment : Fragment() {
                 ViewModelProviders.of(this).get(StoreFrontViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_store_front, container, false)
        // val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+            // homeViewModel.text.observe(viewLifecycleOwner, Observer {
       //      textView.text = it
-        })
+            //})
         return root
     }
 }
