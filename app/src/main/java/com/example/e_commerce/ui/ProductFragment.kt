@@ -33,22 +33,8 @@ class ProductFragment : Fragment() {
         root=inflater.inflate(R.layout.product_fragment, container, false )
         setHasOptionsMenu(true)
         activity?.nav_view?.visibility = View.GONE
-        if (args.productId == null) {
-
-        } else {
-            val temp = viewModel.products.value?.find {args.productId == it.id}
-             if (temp!=null)
-                product = temp
-                root.editProductName.setText(product.name)
-                root.editPrice.setText(product.price.toString())
-                root.editAmount.setText(product.amount.toString())
-            }
-
+        viewModel.setProductId(args.productId)
         return root}
-
-
-
-
    /* override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ProductViewModel::class.java)
@@ -77,8 +63,8 @@ class ProductFragment : Fragment() {
             val name = root.editProductName.text.toString()
             val price = root.editPrice.text.toString().toDouble()
             val amount = root.editAmount.text.toString().toInt()
-            val id:String = UUID.randomUUID().toString()
-            val product = Product(id, name, price, amount)
+            //val id:String = UUID.randomUUID().toString()
+            val product = Product(name, price, amount)
             //val product = Product("", name, price, amount)
             // products.add(product)
             /*fun insertProduct(product: Product) {
@@ -94,7 +80,7 @@ class ProductFragment : Fragment() {
             val name = root.editProductName.text.toString()
             val price = root.editPrice.text.toString().toDouble()
             val amount = root.editAmount.text.toString().toInt()
-            val product = Product(args.productId!!, name, price, amount)
+            val product = Product(name, price, amount, args.productId!!)
             GlobalScope.launch {
                 viewModel.updateProduct(product)
             }

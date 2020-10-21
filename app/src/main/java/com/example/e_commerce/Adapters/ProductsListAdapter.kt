@@ -1,9 +1,11 @@
 package com.example.e_commerce.Adapters
 
+import android.graphics.Rect
 import android.net.sip.SipAudioCall
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Dimension
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerce.Data.Product
 import com.example.e_commerce.R
@@ -46,5 +48,16 @@ class ProductHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         itemView.productTitiletextView.text = value?.name
         itemView.amounttextView.text = value?.amount.toString()
         itemView.pricetextView.text = value?.price.toString()
+    }
+}
+class CharacterItemDecoration(@Dimension private val padding: Int) : RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        super.getItemOffsets(outRect, view, parent, state)
+        outRect.left = padding
     }
 }

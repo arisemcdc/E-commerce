@@ -5,12 +5,12 @@ import androidx.room.PrimaryKey
 import java.util.*
 @Entity(tableName = "products")
 data class Product (
-    @PrimaryKey
-    val id:String = UUID.randomUUID().toString(),
     //var id: String = "",
     val name:String = "",
     val price: Double? = null,
-    val amount: Int? = null
+    val amount: Int? = null,
+    @PrimaryKey
+    val id:String = UUID.randomUUID().toString()
 )
 //val products = arrayListOf<Product>()
 
