@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.e_commerce.Data.Product
 //import com.example.e_commerce.Data.products
 import com.example.e_commerce.R
+import com.example.e_commerce.databinding.ProductFragmentBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.product_fragment.view.*
 import kotlinx.coroutines.GlobalScope
@@ -22,6 +23,7 @@ class ProductFragment : Fragment() {
         fun newInstance() = ProductFragment()
     }
 
+    private lateinit var viewDataBinding: ProductFragmentBinding
     val viewModel: ProductViewModel by viewModels()
     lateinit var root: View
     lateinit var product: Product
@@ -30,12 +32,18 @@ class ProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        root=inflater.inflate(R.layout.product_fragment, container, false )
+        viewModel.setProductId(args.productId)
+        root = inflater.inflate(R.layout.product_fragment, container, false)
+        viewDataBinding = ProductFragmentBinding.bind(root).apply {
+            this.viewmodel = viewmodel
+        }
+        viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         setHasOptionsMenu(true)
         activity?.nav_view?.visibility = View.GONE
         viewModel.setProductId(args.productId)
-        return root}
-   /* override fun onActivityCreated(savedInstanceState: Bundle?) {
+        return viewDataBinding.root
+    }
+    /* override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ProductViewModel::class.java)
         // TODO: Use the ViewModel
@@ -49,7 +57,7 @@ class ProductFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.saveItem -> {
-                saveChanges()
+                viewModel.saveChanges()
             }
             android.R.id.home -> {
                 findNavController().popBackStack()
@@ -57,8 +65,8 @@ class ProductFragment : Fragment() {
         }
         return true
     }
-
-    private fun saveChanges() {
+}
+ /*  private fun saveChanges() {
         if (args.productId == null) {
             val name = root.editProductName.text.toString()
             val price = root.editPrice.text.toString().toDouble()
@@ -67,11 +75,11 @@ class ProductFragment : Fragment() {
             val product = Product(name, price, amount)
             //val product = Product("", name, price, amount)
             // products.add(product)
-            /*fun insertProduct(product: Product) {
+            *//*fun insertProduct(product: Product) {
         GlobalScope.launch {
             localDB.productsDAO().insert(product)
         }
-    }*/
+    }*//*
             GlobalScope.launch {
                 viewModel.insertProduct(product)
             }
@@ -87,4 +95,4 @@ class ProductFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
-}
+}*/

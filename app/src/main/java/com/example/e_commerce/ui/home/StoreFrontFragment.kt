@@ -27,7 +27,7 @@ class StoreFrontFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_store_front, container, false)
-        pagerAdapter = ProductViewPagerAdapter()
+       pagerAdapter = ProductViewPagerAdapter()
         //root.productViewPager.adapter = pagerAdapter
        // val textView: TextView = root.findViewById(R.id.text_home)
             // homeViewModel.text.observe(viewLifecycleOwner, Observer {
