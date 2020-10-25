@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.e_commerce.ui.ProductViewModel" />
+            type="com.example.e_commerce.ui.AddEditProduct.ProductViewModel" />
 
     </data>
 
@@ -14,7 +14,7 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.ProductFragment">
+        tools:context=".ui.AddEditProduct.ProductFragment">
 
         <TextView
             android:id="@+id/nametextView"

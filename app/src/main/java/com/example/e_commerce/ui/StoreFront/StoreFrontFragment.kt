@@ -1,19 +1,15 @@
-package com.example.e_commerce.ui.home
+package com.example.e_commerce.ui.StoreFront
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import com.example.e_commerce.Data.Product
 import com.example.e_commerce.R
-import com.example.e_commerce.ui.ProductViewModel
-import com.example.e_commerce.ui.StoreProductFragment
-import kotlinx.android.synthetic.main.fragment_store_front.view.*
 import java.util.ArrayList
 
 class StoreFrontFragment : Fragment() {
@@ -27,7 +23,9 @@ class StoreFrontFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_store_front, container, false)
-       pagerAdapter = ProductViewPagerAdapter()
+        viewModel.products.value?.let{
+            pagerAdapter = ProductViewPagerAdapter(it, childFragmentManager)            
+        }
         //root.productViewPager.adapter = pagerAdapter
        // val textView: TextView = root.findViewById(R.id.text_home)
             // homeViewModel.text.observe(viewLifecycleOwner, Observer {
@@ -35,11 +33,13 @@ class StoreFrontFragment : Fragment() {
             //})
         return root
     }
-    inner class ProductViewPagerAdapter(): FragmentPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-        override fun getItem(position: Int): Fragment {
-            return fragmentProductList[position]
-        }
 
-        override fun getCount()= viewModel.products.value!!.size
-        }
+}
+
+class ProductViewPagerAdapter(val products: List<Product>, fragmentManager: FragmentManager): FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    override fun getItem(position: Int): Fragment {
+        return StoreProductFragment(products[position])
     }
+
+    override fun getCount()= products.size
+}

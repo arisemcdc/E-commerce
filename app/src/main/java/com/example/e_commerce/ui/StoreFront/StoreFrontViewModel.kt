@@ -1,7 +1,5 @@
-package com.example.e_commerce.ui.home
+package com.example.e_commerce.ui.StoreFront
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.e_commerce.Data.Product
 import com.example.e_commerce.EcommerceApp

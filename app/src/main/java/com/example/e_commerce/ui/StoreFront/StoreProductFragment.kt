@@ -1,14 +1,15 @@
-package com.example.e_commerce.ui
+package com.example.e_commerce.ui.StoreFront
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.e_commerce.Data.Product
 import com.example.e_commerce.R
 
 
-class StoreProductFragment : Fragment() {
+class StoreProductFragment(val product: Product) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

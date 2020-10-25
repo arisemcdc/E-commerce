@@ -1,6 +1,5 @@
-package com.example.e_commerce.ui
+package com.example.e_commerce.ui.AddEditProduct
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -11,16 +10,14 @@ import com.example.e_commerce.Data.Product
 //import com.example.e_commerce.Data.products
 import com.example.e_commerce.R
 import com.example.e_commerce.databinding.ProductFragmentBinding
+import com.example.e_commerce.ui.ProductFragmentArgs
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.product_fragment.view.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.util.*
 
 class ProductFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ProductFragment()
+        fun newInstance() =
+            ProductFragment()
     }
 
     private lateinit var viewDataBinding: ProductFragmentBinding

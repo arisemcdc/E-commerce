@@ -1,7 +1,6 @@
 package com.example.e_commerce.Adapters
 
 import android.graphics.Rect
-import android.net.sip.SipAudioCall
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,6 @@ import androidx.annotation.Dimension
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerce.Data.Product
 import com.example.e_commerce.R
-import com.example.e_commerce.ui.dashboard.BackEndFragment
-import com.google.android.material.internal.NavigationMenuItemView
 import kotlinx.android.synthetic.main.item_list_product.view.*
 
 class ProductsListAdapter(val products: List<Product>?, val listener:Listener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
