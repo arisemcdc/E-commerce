@@ -9,7 +9,11 @@
         android:id="@+id/navigation_store_front"
         android:name="com.example.e_commerce.ui.StoreFront.StoreFrontFragment"
         android:label="@string/title_store_front"
-        tools:layout="@layout/fragment_store_front" />
+        tools:layout="@layout/fragment_store_front" >
+        <action
+            android:id="@+id/action_navigation_store_front_to_storeProductFragment"
+            app:destination="@id/storeProductFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_back_end"
@@ -33,6 +37,16 @@
         tools:layout="@layout/product_fragment" >
         <argument
             android:name="productId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+    </fragment>
+    <fragment
+        android:id="@+id/storeProductFragment"
+        android:name="com.example.e_commerce.ui.StoreFront.StoreProductFragment"
+        android:label="StoreProductFragment" >
+        <argument
+            android:name="productStoreId"
             app:argType="string"
             app:nullable="true"
             android:defaultValue="null" />
