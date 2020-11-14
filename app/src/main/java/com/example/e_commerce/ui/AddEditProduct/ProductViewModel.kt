@@ -1,5 +1,6 @@
 package com.example.e_commerce.ui.AddEditProduct
 
+import android.app.usage.UsageEvents
 import androidx.lifecycle.*
 import com.example.e_commerce.Data.Product
 import com.example.e_commerce.EcommerceApp
@@ -14,6 +15,8 @@ class ProductViewModel : ViewModel() {
     val amount = MutableLiveData<String>()
     private val repository = EcommerceApp.repository
     private var _productId: String? = null
+    private val _snackbarText = MutableLiveData<UsageEvents.Event<Int>>()
+    val snackbarText: LiveData<UsageEvents.Event<Int>> = _snackbarText
     val products = repository.products
 
     suspend fun insertProduct(product: Product) = repository.insertProduct(product)
@@ -40,7 +43,7 @@ class ProductViewModel : ViewModel() {
         val amountValue = amount.value?.toIntOrNull()
 
         if (nameValue ==null || priceValue == null || amountValue == null ){
-            //view show message
+            _snackbarText.value = Event(R.string.empty_task_message)
             return
         }
 

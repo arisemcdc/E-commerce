@@ -11,6 +11,7 @@ import com.example.e_commerce.Data.Product
 import com.example.e_commerce.R
 import com.example.e_commerce.databinding.ProductFragmentBinding
 import com.example.e_commerce.ui.ProductFragmentArgs
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ProductFragment : Fragment() {
@@ -61,6 +62,9 @@ class ProductFragment : Fragment() {
             }
         }
         return true
+    }
+    private fun setupSnackbar() {
+        view?.setupSnackbar(this, viewModel.snackbarText, Snackbar.LENGTH_SHORT)
     }
 }
  /*  private fun saveChanges() {
