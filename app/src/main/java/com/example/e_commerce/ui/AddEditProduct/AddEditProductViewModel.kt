@@ -11,7 +11,7 @@ import com.example.e_commerce.Util.Event
 import kotlinx.coroutines.launch
 
 
-class ProductViewModel : ViewModel() {
+class AddEditProductViewModel : ViewModel() {
     // Two-way databinding, exposing MutableLiveData
     val name = MutableLiveData<String>()
     // Two-way databinding, exposing MutableLiveData
