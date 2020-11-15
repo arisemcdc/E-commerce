@@ -20,8 +20,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
 
-/*
-@RunWith(AndroidJUnit4::class)
+/*@RunWith(AndroidJUnit4::class)
 class ProductsDataTest : TestCase(){
     fun getProducts() = runBlocking {
         val data = EcommerceApp.repository.localDB.productsDAO().getProducts()
@@ -29,32 +28,30 @@ class ProductsDataTest : TestCase(){
         Unit
     }
 }*/
-/*
 @RunWith(AndroidJUnit4::class)
 class ProductsDataTest {
     private lateinit var productsDAO: ProductsDAO
     private lateinit var db: RoomDB
-}
-@Before
-fun createDb() {
-    val context = ApplicationProvider.getApplicationContext<Context>()
-    val db = Room.inMemoryDatabaseBuilder(
-        context, RoomDB::class.java).build()
-    productsDao = db.getProductsDao()
-}
-@After
-@Throws(IOException::class)
-fun closeDb() {
-    db.close()
-}
-@Test
-@Throws(Exception::class)
-fun writeProductAndReadInList() {
-    val product: Product = TestUtil.createUser(1).apply {
-        setName("george")
+
+    @Before
+    fun createDb() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val db = Room.inMemoryDatabaseBuilder(
+            context, RoomDB::class.java).build()
+        productsDAO = db.productsDAO()
+    }
+    @After
+    @Throws(IOException::class)
+    fun closeDb() {
+        db.close()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun writeProductAndReadInList() = runBlocking {
         val product = Product("ddd", 120.00, 12, "2")
         productsDAO.insert(product)
-        val nameProduct = productsDAO.findProductsByName("ddd")
-        assertThat(nameProduct.get(0), equalTo(product))
+        val products = productsDAO.getProductById("2")
+        assertThat(products[0], equalTo(product))
     }
-}*/
+}

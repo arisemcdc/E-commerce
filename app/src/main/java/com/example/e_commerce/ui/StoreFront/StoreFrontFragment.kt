@@ -8,23 +8,29 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.viewModels
+import com.example.e_commerce.Adapters.ProductsListAdapter
 import com.example.e_commerce.Data.Product
 import com.example.e_commerce.R
+import kotlinx.android.synthetic.main.fragment_store_front.view.*
 import java.util.ArrayList
 
-class StoreFrontFragment : Fragment() {
+class StoreFrontFragment : Fragment(), ProductsListAdapter.Listener {
 
     val viewModel: StoreFrontViewModel by viewModels()
     val fragmentProductList:MutableList<StoreProductFragment> = ArrayList()
-    lateinit var pagerAdapter: ProductViewPagerAdapter
+   // lateinit var pagerAdapter: ProductViewPagerAdapter
+    
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+
         val root = inflater.inflate(R.layout.fragment_store_front, container, false)
         viewModel.products.value?.let{
-            pagerAdapter = ProductViewPagerAdapter(it, childFragmentManager)            
+            val pagerAdapter = ProductsListAdapter(it, this)
+            //pagerAdapter = ProductViewPagerAdapter(it, childFragmentManager)   
+            root.productViewPager.adapter=pagerAdapter          
         }
         //root.productViewPager.adapter = pagerAdapter
        // val textView: TextView = root.findViewById(R.id.text_home)
@@ -32,6 +38,10 @@ class StoreFrontFragment : Fragment() {
       //      textView.text = it
             //})
         return root
+    }
+
+    override fun onClickProduct(product: Product) {
+        
     }
 
 }

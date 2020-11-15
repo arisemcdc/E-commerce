@@ -15,31 +15,15 @@ import kotlinx.android.synthetic.main.fragment_store_product.view.*
 
 class StoreProductFragment(val product: Product) : Fragment() {
     lateinit var root: View
-    private val repository = EcommerceApp.repository
-    val products = repository.products
-    //val args = StoreProductFragmentArgs by NavArgs
-    private var _productId: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-       // setProductId(args)
         root = inflater.inflate(R.layout.fragment_store_product,  container, false)
-
-       // Repository.products.
+        setProductsValues()
         return root
     }
-    private fun setProductId(id: String?){
-        _productId = id
-        if (id != null){
-            val product = products.value?.find { _productId == it.id }
-            product?.let {
-                setProductsValues(it)
-            }
-        }
-    }
-    private fun setProductsValues(product: Product) {
+    private fun setProductsValues() {
         root.nametextView.setText(product.name)
         root.pricetextViewValue.setText(product.price.toString())
         root.amounttextViewValue.setText(product.amount.toString())
