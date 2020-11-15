@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.e_commerce.Data.Product
 //import com.example.e_commerce.Data.products
 import com.example.e_commerce.R
+import com.example.e_commerce.Util.setupSnackbar
 import com.example.e_commerce.databinding.ProductFragmentBinding
 import com.example.e_commerce.ui.ProductFragmentArgs
 import com.google.android.material.snackbar.Snackbar
@@ -41,12 +42,11 @@ class ProductFragment : Fragment() {
         viewModel.setProductId(args.productId)
         return viewDataBinding.root
     }
-    /* override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ProductViewModel::class.java)
-        // TODO: Use the ViewModel
-    }*/
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setupSnackbar()
+    }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.save_menu, menu)
