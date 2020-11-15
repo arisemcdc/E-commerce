@@ -11,31 +11,34 @@ import com.example.e_commerce.Data.Product
 import com.example.e_commerce.R
 import com.example.e_commerce.Util.setupSnackbar
 import com.example.e_commerce.databinding.ProductFragmentBinding
-import com.example.e_commerce.ui.ProductFragmentArgs
+
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
-class ProductFragment : Fragment() {
+class AddEditProductFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            ProductFragment()
+            AddEditProductFragment()
     }
 
     private lateinit var viewDataBinding: ProductFragmentBinding
-    val viewModel: ProductViewModel by viewModels()
+    val viewModel: AddEditProductViewModel by viewModels()
     lateinit var root: View
     lateinit var product: Product
-    val args: ProductFragmentArgs by navArgs()
+    //val args: ProductFragmentArgs by navArgs()
+    val args: AddEditProductFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel.setProductId(args.productId)
         root = inflater.inflate(R.layout.product_fragment, container, false)
-        viewDataBinding = ProductFragmentBinding.bind(root).apply {
-            this.viewmodel = viewmodel
-        }
+        /*viewDataBinding = ProductFragmentBinding.bind(root).apply {
+            viewmodel = viewModel
+        }*/
+        viewDataBinding = ProductFragmentBinding.bind(root)
+        viewDataBinding.viewmodel = viewModel
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         setHasOptionsMenu(true)
         activity?.nav_view?.visibility = View.GONE
